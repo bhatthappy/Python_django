@@ -1,0 +1,111 @@
+{% extends 'app/base.html' %} {% block content %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+
+      .container {
+        max-width: 600px;
+        margin: 50px auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+
+      h1,
+      h2 {
+        text-align: center;
+      }
+
+      .product-details {
+        display: flex;
+        margin-bottom: 20px;
+      }
+
+      .product-image img {
+        max-width: 100px;
+        height: auto;
+        margin-right: 20px;
+      }
+
+      .payment-method {
+        margin-bottom: 20px;
+      }
+
+      .checkout-btn {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      .checkout-btn:hover {
+        background-color: #0056b3;
+      }
+
+      /* Form styling */
+      .form-group {
+        margin-bottom: 15px;
+      }
+
+      .form-group label {
+        display: block;
+        font-weight: bold;
+      }
+
+      .form-group input {
+        width: 100%;
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+    </style>
+  </head>
+  <br /><br /><br /><br />
+  <body>
+    <div class="container">
+      <h1>Checkout</h1>
+      <div class="product-details">
+        <div class="product-image">
+          <img src="{{ product.productimage.url }}" alt="Product Image" />
+        </div>
+        <div class="product-info">
+          <h2>{{ request.session.pname }}</h2>
+          <p>Price: {{ request.session.pprice }}</p>
+          <p>Quantity: {{ request.session.qty }}</p>
+        </div>
+      </div>
+      <div class="payment-method">
+        <h2>Payment Method</h2>
+        <p>Cash on Delivery</p>
+      </div>
+      <form action="{% url 'ordermake' %}" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+          <label for="name">Name:</label>
+          <input type="text" id="name" name="name" required />
+        </div>
+        <div class="form-group">
+          <label for="address">Address:</label>
+          <input type="text" id="address" name="address" required />
+        </div>
+        <div class="form-group">
+          <label for="phone">Phone:</label>
+          <input type="number" id="phone" name="contactno" required />
+        </div>
+        <button type="submit" class="checkout-btn">Place Order</button>
+      </form>
+    </div>
+  </body>
+</html>
+{% endblock %}

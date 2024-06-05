@@ -1,0 +1,63 @@
+<html>
+  <head>
+    <style>
+      .login-form {
+        width: 300px;
+        margin: 0 auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.2);
+      }
+
+      .login-form h2 {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+
+      .login-form label {
+        display: block;
+        margin-bottom: 5px;
+      }
+
+      .login-form input[type="text"],
+      .login-form input[type="password"] {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box;
+      }
+
+      .login-form input[type="submit"] {
+        width: 100%;
+        padding: 10px;
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      .login-form input[type="submit"]:hover {
+        background-color: #3e8e41;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="login-form">
+      <h3 style="color: red">{{msg}}</h3>
+
+      <h2>Admin Login</h2>
+      <form method="post" action="{% url 'login' %}">
+        {% csrf_token %}
+        <label for="username">Username:</label><br />
+        <input type="text" id="username" name="uname" /><br />
+        <label for="password">Password:</label><br />
+        <input type="password" id="password" name="password" /><br />
+        <input type="submit" value="Login" />
+      </form>
+    </div>
+  </body>
+</html>

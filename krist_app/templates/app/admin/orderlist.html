@@ -1,0 +1,142 @@
+{% extends "app/admin/base.html" %} {% load static %} {% block content %}
+
+<style>
+    .activity {
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+
+.activity .title {
+  background-color: #007bff;
+  color: #fff;
+  padding: 15px;
+}
+
+.activity .title .text {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.table-container {
+  overflow-x: auto;
+}
+
+.user-table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.user-table th,
+.user-table td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: left;
+}
+
+.user-table th {
+  background-color: #f0f0f0;
+  color: #333;
+  font-weight: bold;
+}
+
+.user-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.user-table tr:hover {
+  background-color: #ccc;
+}
+
+.user-table th:first-child,
+.user-table td:first-child {
+  border-left: none;
+}
+
+.user-table th:last-child,
+.user-table td:last-child {
+  border-right: none;
+}
+
+.user-table th:nth-child(2) {
+  width: 20%;
+}
+
+.user-table th:nth-child(3) {
+  width: 30%;
+}
+
+.user-table th:nth-child(4) {
+  width: 30%;
+}
+</style>
+<section class="dashboard">
+  <div class="top">
+    <i class="uil uil-bars sidebar-toggle"></i>
+    {% comment %}
+    <div class="search-box">
+      <i class="uil uil-search"></i>
+      <input type="text" placeholder="Search here..." />
+    </div>
+    {% endcomment %}
+
+    <img src="images/profile.jpg" alt="" />
+  </div>
+
+  <div class="dash-content">
+    <div class="overview">
+      {% comment %}
+      <div class="boxes">
+        <div class="box box1">
+          <i class="uil uil-thumbs-up"></i>
+          <span class="text">Total Likes</span>
+          <span class="number">50,120</span>
+        </div>
+        <div class="box box2">
+          <i class="uil uil-comments"></i>
+          <span class="text">Comments</span>
+          <span class="number">20,120</span>
+        </div>
+        <div class="box box3">
+          <i class="uil uil-share"></i>
+          <span class="text">Total Share</span>
+          <span class="number">10,120</span>
+        </div>
+      </div>
+      {% endcomment %}
+    </div>
+<div class="activity">
+  <div class="title">
+    <span class="text">Order List</span>
+  </div>
+  <div class="table-container">
+    <table class="user-table">
+      <thead>
+        <tr>
+          <th>Order ID</th>
+          <th>User Name</th>
+          <th>Product Name</th>
+          <th>Product Price</th>
+          <th>Product Quantity</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for i in order %}
+        <tr>
+          <td>{{ i.order_id }}</td>
+          <td>{{ i.product_name }}</td>
+          <td>{{ i.user_name }}</td>
+          <td>{{ i.product_price }}</td>
+          <td>{{ i.product_qty }}</td>
+        
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+</section>
+
+{% endblock %}

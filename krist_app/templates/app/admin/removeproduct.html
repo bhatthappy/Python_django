@@ -1,0 +1,98 @@
+{% extends "app/admin/base.html" %} {% block content %} {% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+
+    <link
+      rel="stylesheet"
+      href="{% static '/admin/css/owl.carousel.min.css' %}"
+    />
+    <link
+      rel="stylesheet"
+      href="{% static '/admin/css/owl.theme.default.min.css' %}"
+    />
+
+    <link
+      rel="stylesheet"
+      href="{% static '/admin/css/showMoreItems-theme.min.css' %}"
+    />
+
+    <link
+      rel="stylesheet"
+      href="{% static '/admin///cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css' %}"
+    />
+
+    <link rel="stylesheet" href="{% static '/admin/css/bootstrap.min.css' %}" />
+
+    <link rel="stylesheet" href="{% static '/admin/css/style.css' %}" />
+  </head>
+  <body>
+    <section>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-lg-10 col-md-8 ml-auto">
+            <div class="row align-items-center pt-md-5 mt-md-5 mb-5">
+              <!-- First Table -->
+              <div class="col-12 mb-4 mb-xl-0">
+                <h4 class="text-muted text-center mb-3">Delete Products</h4>
+                <table
+                  class="table bg-light table-striped text-center"
+                  id="delproduct"
+                >
+                  <thead>
+                    <tr class="text-muted">
+                      <th>Product ID</th>
+                      <th>Product Image</th>
+                      <th>Product Name</th>
+                      <th>Price</th>
+                      <th>Delete</th>
+                    </tr>
+                  </thead>
+                  {% for i in key1 %}
+                  <tbody>
+                    <tr>
+                      <td class="align-middle">{{ i.product_id }}</td>
+                      <td class="align-middle">
+                        <img
+                          src="{{ i.productimage.url }}"
+                          width="70px"
+                          alt="product-1"
+                        />
+                      </td>
+                      <td class="align-middle">{{ i.productname }}</td>
+                      <td class="align-middle">{{ i.productprice }}</td>
+                      <td>
+                        <form action="{% url 'productremove' product_id=i.product_id %}" method="POST">
+                        {% csrf_token %}
+                        <button
+                          type="submit"
+                          class="btn btn-danger btn-sm align-middle mt-3"
+                        >
+                          Remove
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                  {% endfor %}
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>
+{% endblock%}

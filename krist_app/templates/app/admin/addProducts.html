@@ -1,0 +1,151 @@
+{% extends 'app/admin/base.html' %} {% block content %} {% load static %}
+
+<html>
+  <head>
+    <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+      <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap"
+        rel="stylesheet"
+      />
+
+      <link
+        rel="stylesheet"
+        href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+      />
+
+      <link
+        rel="stylesheet"
+        href="{% static '/admin/css/owl.carousel.min.css' %}"
+      />
+      <link
+        rel="stylesheet"
+        href="{% static '/admin/css/owl.theme.default.min.css' %}"
+      />
+
+      <link
+        rel="stylesheet"
+        href="{% static '/admin/css/showMoreItems-theme.min.css' %}"
+      />
+
+      <link
+        rel="stylesheet"
+        href="{% static '/admin/css/bootstrap.min.css' %}"
+      />
+
+      <link rel="stylesheet" href="{% static '/admin/css/style.css' %}" />
+    </head>
+  </head>
+  <body>
+    <section>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-lg-10 col-md-8 ml-auto">
+            <div class="row align-items-center pt-md-5 mt-md-5 mb-5">
+              <div class="col-12">
+                <div class="card">
+                  <div class="card-title text-center mt-3">
+                    <h3>Add Product</h3>
+                    <h3 style="color: green">{{msg}}</h3>
+                    <h3 style="color: red">{{text}}</h3>
+                  </div>
+                  <div class="card-body">
+                    <form
+                      action="{% url 'addproduct' %}"
+                      method="post"
+                      enctype="multipart/form-data"
+                    >
+                      {% csrf_token %}
+                      <div class="form-group">
+                        <label for="productid">Product Id:</label>
+                        <input
+                          type="text"
+                          class="form-control"
+                          name="pid"
+                          placeholder="Enter Product Id"
+                        />
+                        <div class="invalid-feedback">
+                          Product ID Can't Be Empty
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="productname">Product Name:</label>
+                        <input
+                          type="text"
+                          class="form-control"
+                          name="pname"
+                          placeholder="Enter Product Name"
+                        />
+                        <div class="invalid-feedback">
+                          Product Name Can't Be Empty
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="sel1">Select Category:</label>
+                        <select class="form-control" name="pcategory">
+                          <option>Mobile</option>
+                          <option>TV</option>
+                          <option>Watch</option>
+                          <option>Laptop</option>
+                        </select>
+                      </div>
+
+                      <div class="form-group">
+                        <label for="productprice">Product Price:</label>
+                        <input
+                          type="text"
+                          class="form-control"
+                          placeholder="Enter Product Price"
+                          name="pprice"
+                        />
+                        <div class="invalid-feedback">
+                          Product Price Can't Be Empty
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="productprice">Product Desctiption:</label>
+                        <div data-mdb-input-init class="form-outline">
+                          <textarea
+                            class="form-control"
+                            name="pdesc"
+                            placeholder="Enter Product Descrption"
+                            rows="2"
+                          ></textarea>
+                        </div>
+                      </div>
+                      <p>Product Image:</p>
+                      <div class="custom-file">
+                        <input
+                          type="file"
+                          class="custom-file-input"
+                          name="pimage"
+                          required
+                        />
+                        <label class="custom-file-label" for="productimage"
+                          >Choose file...</label
+                        >
+                        <div class="invalid-feedback">
+                          File Format Not Supported
+                        </div>
+                      </div>
+                      <button
+                        class="btn btn-dark mt-5 mx-auto d-block"
+                        type="submit"
+                      >
+                        Add Product
+                      </button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>
+
+{% endblock %}

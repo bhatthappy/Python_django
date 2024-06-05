@@ -1,0 +1,62 @@
+{% extends "app/base.html" %} {% load static %} {% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shopping Cart</title>
+    <link rel="stylesheet" href="{% static '/css/styles.css' %}" />
+  </head>
+  <body>
+    <h1>Shopping Cart</h1>
+    <form
+      method="post"
+      action="{% url 'order' product_id=product.product_id  %}"
+    >
+      {% csrf_token %}
+      <div class="shopping-cart">
+        <div class="column-labels">
+          <label class="product-image">Image</label>
+          <label class="product-details">Product</label>
+          <label class="product-price">Price</label>
+          <label class="product-quantity">Quantity</label>
+          <label class="product-removal">Remove</label>
+          <label class="product-line-price">Total</label>
+        </div>
+
+        <div class="product">
+          <div class="product-image">
+            <img src="{{ product.productimage.url }}" />
+          </div>
+          <div class="product-details">
+            <div class="product-title"></div>
+            <p class="product-description">{{ product.productdescription }}</p>
+          </div>
+          <div class="product-price">{{ product.productprice }}</div>
+          <div class="product-quantity">
+            <input
+              type="number"
+              class="product-quantity-input"
+              name="quantity"
+              value="1"
+              min="1"
+            />
+          </div>
+          <div class="product-removal">
+            <a href="{% url 'cartremove' %}" class="remove-product">Remove</a>
+          </div>
+
+          <div class="product-line-price">{{ product.productprice }}</div>
+        </div>
+
+        <button type="submit" class="checkout">Place Order</button>
+      </div>
+
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+      <script src="{% static '/js/scripts.js' %}"></script>
+    </form>
+  </body>
+</html>
+
+{% endblock %}

@@ -1,0 +1,67 @@
+{% load static %}
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Update Product</title>
+    <link rel="stylesheet" href="{% static '/admin/css/update.css' %}" />
+  </head>
+  <body>
+    <form
+      method="post"
+      enctype="multipart/form-data"
+      action="{% url 'update_product' product_id=data.product_id%}"
+    >
+      {% csrf_token %}
+      <div class="update-product-page">
+        <div class="product-details">
+          <img
+            class="product-image"
+            src="{{ data.productimage.url }}"
+            alt="Product Image"
+          />
+        </div>
+
+        <div class="update-form">
+          <h2 class="form-title">Update Product</h2>
+          <form class="update-product-form">
+            <label for="product-name">Product Name:</label><br />
+            <input
+              type="text"
+              id="product-name"
+              name="product-name"
+              required
+              value="{{ data.productname }}"
+            /><br />
+            <label for="product-description">Product Description:</label><br />
+            <textarea
+              id="product-description"
+              name="product-description"
+              required
+            >
+{{ data.productdescription }}</textarea
+            ><br />
+            <label for="product-price">Product Price:</label><br />
+            <input
+              type="number"
+              id="product-price"
+              name="product-price"
+              step="0.01"
+              required
+              value="{{ data.productprice }}"
+            /><br />
+            <label for="product-image">Product Image:</label><br />
+            <input
+              type="file"
+              id="product-image"
+              name="product-image"
+              accept="image/*"
+            /><br />
+            <button type="submit">Update Product</button>
+          </form>
+        </div>
+      </div>
+    </form>
+  </body>
+</html>

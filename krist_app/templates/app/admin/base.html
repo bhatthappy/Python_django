@@ -1,0 +1,99 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="{% static '/admin/style.css' %}" />
+
+    <link
+      rel="stylesheet"
+      href="https://unicons.iconscout.com/release/v4.0.0/css/line.css"
+    />
+
+    <title>Admin Dashboard Panel</title>
+  </head>
+  <body>
+    <nav>
+      <div class="logo-name">
+        <div class="logo-image">
+          <img src="{% static '/images/Krist_logo.png' %}" alt="" />
+        </div>
+
+        <span class="logo_name">Krist Store</span>
+      </div>
+
+      <div class="menu-items">
+        <ul class="nav-links">
+          <li>
+            <a href="{% url 'indexadmin' %}">
+              <i class="uil uil-estate"></i>
+              <span class="link-name">Dahsboard</span>
+            </a>
+          </li>
+          <li>
+            <a href="{% url 'displayproduct' %}">
+              <i class="uil uil-files-landscapes"></i>
+              <span class="link-name">All Products</span>
+            </a>
+          </li>
+          <li>
+            <a href="{% url 'addproducts' %}">
+              <i class="uil uil-chart"></i>
+              <span class="link-name">Add Products</span>
+            </a>
+          </li>
+          <li>
+            <a href="{% url 'removeproduct' %}">
+              <i class="uil uil-thumbs-up"></i>
+              <span class="link-name">Remove Product</span>
+            </a>
+          </li>
+          <li>
+            <a href="{% url 'productupdate' %}">
+              <i class="uil uil-comments"></i>
+              <span class="link-name">Update Products</span>
+            </a>
+          </li>
+          <li>
+            <a href="{% url 'listuser' %}">
+              <i class="uil uil-share"></i>
+              <span class="link-name">User List</span>
+            </a>
+          </li>
+          <li>
+            <a href="{% url 'listorder' %}">
+              <i class="uil uil-share"></i>
+              <span class="link-name">Order List</span>
+            </a>
+          </li>
+        </ul>
+
+        <ul class="logout-mode">
+          <li>
+            <a href="#">
+              <i class="uil uil-signout"></i>
+              <span class="link-name">Logout</span>
+            </a>
+          </li>
+
+          <li class="mode">
+            <a href="#">
+              <i class="uil uil-moon"></i>
+              <span class="link-name">Dark Mode</span>
+            </a>
+
+            <div class="mode-toggle">
+              <span class="switch"> </span>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    {% block content %} {% endblock %}
+    <script src="{% static '/admin/script.js' %}"></script>
+  </body>
+</html>
